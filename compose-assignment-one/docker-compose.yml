@@ -1,0 +1,25 @@
+# Assignment: Build a Drupal website using docker-compose
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: dro0pal935
+    restart: always
+  drupal:
+    image: drupal:latest
+    ports:
+      - '8080:80' # expose 80 on host and sent to 80 in container
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-themes:/var/www/html/themes
+      - drupal-sites:/var/www/html/sites
+    restart: always
+
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-themes:
+  drupal-sites:
